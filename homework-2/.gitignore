@@ -1,0 +1,23 @@
+.gradle/
+build/
+out/
+
+# IDE
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Java
+*.class
+
+# Spring Boot
+/tmp/
