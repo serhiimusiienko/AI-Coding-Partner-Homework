@@ -3,6 +3,10 @@ server:
 spring:
   main:
     banner-mode: "off"
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    deserialization:
+      fail-on-unknown-properties: true
 logging:
   level:
     root: INFO

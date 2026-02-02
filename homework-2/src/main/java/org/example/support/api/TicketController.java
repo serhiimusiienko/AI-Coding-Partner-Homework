@@ -1,47 +1,70 @@
 package org.example.support.api;
 
+import jakarta.validation.Valid;
+import org.example.support.api.dto.TicketUpdateRequest;
+import org.example.support.domain.Category;
+import org.example.support.domain.Priority;
+import org.example.support.domain.Ticket;
+import org.example.support.service.TicketService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/tickets")
 public class TicketController {
 
+    private final TicketService service;
+
+    public TicketController(TicketService service) {
+        this.service = service;
+    }
+
     @PostMapping
-    public ResponseEntity<?> createTicket(@RequestBody String body,
+    public ResponseEntity<Ticket> createTicket(@Valid @RequestBody Ticket ticket,
                                           @RequestParam(name = "autoClassify", defaultValue = "false") boolean autoClassify) {
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body("TODO: createTicket");
+        Ticket created = service.create(ticket);
+        // autoClassify flag will be implemented later
+        return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @PostMapping("/import")
-    public ResponseEntity<?> importTickets() {
+    public ResponseEntity<String> importTickets() {
         return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body("TODO: importTickets");
     }
 
     @GetMapping
-    public ResponseEntity<?> listTickets(@RequestParam(required = false) String category,
-                                         @RequestParam(required = false) String priority) {
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body("TODO: listTickets");
+    public ResponseEntity<List<Ticket>> listTickets(@RequestParam(required = false) Category category,
+                                         @RequestParam(required = false) Priority priority) {
+        List<Ticket> result = service.list(category, priority);
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getTicket(@PathVariable String id) {
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body("TODO: getTicket");
+    public ResponseEntity<Ticket> getTicket(@PathVariable String id) {
+        Ticket t = service.get(UUID.fromString(id));
+        if (t == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        return ResponseEntity.ok(t);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateTicket(@PathVariable String id, @RequestBody String body) {
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body("TODO: updateTicket");
+    public ResponseEntity<Ticket> updateTicket(@PathVariable String id, @RequestBody TicketUpdateRequest updates) {
+        Ticket updated = service.update(UUID.fromString(id), updates);
+        if (updated == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteTicket(@PathVariable String id) {
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body("TODO: deleteTicket");
+    public ResponseEntity<Void> deleteTicket(@PathVariable String id) {
+        boolean deleted = service.delete(UUID.fromString(id));
+        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
     @PostMapping("/{id}/auto-classify")
-    public ResponseEntity<?> autoClassify(@PathVariable String id) {
+    public ResponseEntity<String> autoClassify(@PathVariable String id) {
         return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body("TODO: autoClassify");
     }
 }
