@@ -36,4 +36,4 @@ cd homework-2
 - JaCoCo HTML: [homework-2/build/reports/jacoco/test/html/index.html](homework-2/build/reports/jacoco/test/html/index.html)
 - JaCoCo XML: [homework-2/build/reports/jacoco/test/jacocoTestReport.xml](homework-2/build/reports/jacoco/test/jacocoTestReport.xml)
 - Summary: [homework-2/docs/screenshots/test_coverage.md](homework-2/docs/screenshots/test_coverage.md)
-- Target: >85% overall coverage
+- Target: ≥85% across all coverage types (instruction, branch, line, complexity, method, class)

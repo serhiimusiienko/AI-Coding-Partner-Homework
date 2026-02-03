@@ -31,6 +31,33 @@ class CategorizationTests {
     }
 
     @Test
+    void urgentSecurityKeywordSetsUrgent() {
+        Ticket t = new Ticket();
+        t.setSubject("Security vulnerability");
+        t.setDescription("Potential security issue in auth flow");
+        ClassificationResult res = classifier.classify(t);
+        assertEquals(org.example.support.domain.Priority.URGENT, res.getPriority());
+    }
+
+    @Test
+    void highAsapKeywordSetsHigh() {
+        Ticket t = new Ticket();
+        t.setSubject("Need fix ASAP");
+        t.setDescription("Important customer blocked by error");
+        ClassificationResult res = classifier.classify(t);
+        assertEquals(org.example.support.domain.Priority.HIGH, res.getPriority());
+    }
+
+    @Test
+    void lowMinorKeywordSetsLow() {
+        Ticket t = new Ticket();
+        t.setSubject("Minor cosmetic issue");
+        t.setDescription("UI has a cosmetic misalignment");
+        ClassificationResult res = classifier.classify(t);
+        assertEquals(org.example.support.domain.Priority.LOW, res.getPriority());
+    }
+
+    @Test
     void billingQuestionMediumPriority() {
         Ticket t = new Ticket();
         t.setSubject("Refund requested");
