@@ -64,4 +64,40 @@ class TicketApiTests {
                                 .andExpect(jsonPath("$.priority", is("URGENT")))
                                 .andExpect(jsonPath("$.category", anyOf(is("TECHNICAL_ISSUE"), is("BUG_REPORT"))));
         }
+
+            @Test
+            void filterByTagAndStatus() throws Exception {
+                String body = "{" +
+                        "\"customer_id\":\"CUST-3\"," +
+                        "\"customer_email\":\"user3@example.com\"," +
+                        "\"customer_name\":\"User Three\"," +
+                        "\"subject\":\"Auth help\"," +
+                        "\"description\":\"Need assistance\"," +
+                        "\"tags\":[\"auth\",\"vip\"]}";
+
+                String created = mockMvc.perform(post("/tickets")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(body))
+                        .andExpect(status().isCreated())
+                        .andReturn().getResponse().getContentAsString();
+
+                // Extract id
+                String id = created.replaceAll(".*\"id\":\"([^\"]+)\".*", "$1");
+
+                // Update status to RESOLVED
+                mockMvc.perform(put("/tickets/" + id)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("{\"status\":\"RESOLVED\"}"))
+                        .andExpect(status().isOk());
+
+                // Filter by tag
+                mockMvc.perform(get("/tickets?tag=auth"))
+                        .andExpect(status().isOk())
+                        .andExpect(jsonPath("$", not(empty())));
+
+                // Filter by status
+                mockMvc.perform(get("/tickets?status=RESOLVED"))
+                        .andExpect(status().isOk())
+                        .andExpect(jsonPath("$", not(empty())));
+            }
 }

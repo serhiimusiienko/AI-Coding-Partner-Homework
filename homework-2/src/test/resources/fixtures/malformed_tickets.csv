@@ -1,0 +1,2 @@
+customer_id,customer_email,customer_name,description,category,priority,status
+CUST-99,user99@example.com,User99,Missing subject field,billing_question,high,new

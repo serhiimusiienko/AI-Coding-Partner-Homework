@@ -1,0 +1,9 @@
+<tickets>
+  <ticket>
+    <customer_id>CUST-88</customer_id>
+    <customer_email>user88@example.com</customer_email>
+    <customer_name>User 88</customer_name>
+    <subject>Broken XML</subject>
+    <description>Malformed closing tag below</description>
+  </tick>
+</tickets>
