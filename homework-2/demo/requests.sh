@@ -24,8 +24,13 @@ curl -sS -X POST "$BASE_URL/tickets?autoClassify=false" \
 echo "# List tickets"
 curl -sS "$BASE_URL/tickets" | maybe_jq || true
 
-echo "# Import tickets (CSV/JSON/XML) - placeholder; adjust with -F file=@path"
-curl -sS -X POST "$BASE_URL/tickets/import" | maybe_jq || true
+echo "# Import tickets (CSV/JSON/XML) - example with JSON file"
+if [[ -f "homework-2/sample_tickets.json" ]]; then
+  curl -sS -X POST "$BASE_URL/tickets/import" \
+    -F "file=@homework-2/sample_tickets.json" -F "format=json" | maybe_jq || true
+else
+  echo "(sample_tickets.json not found; skipping import example)"
+fi
 
 echo "# Get ticket by ID (placeholder ID)"
 curl -sS "$BASE_URL/tickets/00000000-0000-0000-0000-000000000000" | maybe_jq || true

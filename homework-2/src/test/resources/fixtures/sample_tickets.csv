@@ -1,0 +1,3 @@
+customer_id,customer_email,customer_name,subject,description,category,priority,status
+CUST-20,twenty@example.com,Twenty,Payment refund,Requesting refund for last invoice,billing_question,high,new
+CUST-21,bad-email,TwentyOne,,short,,,new
