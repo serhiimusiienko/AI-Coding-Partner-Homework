@@ -1,3 +1,51 @@
-customer_id,customer_email,customer_name,subject,description,category,priority,status
-CUST-20,twenty@example.com,Twenty,Payment refund,Requesting refund for last invoice,billing_question,high,new
-CUST-21,bad-email,TwentyOne,,short,,,new
+customer_id,customer_email,customer_name,subject,description,category,priority,status,tags,assigned_to
+CUST-001,user001@example.com,Alice Johnson,Cannot login to account,I've been trying to access my account for the past hour but keep getting an error message saying invalid credentials,account_access,urgent,new,login;access,
+CUST-002,user002@example.com,Bob Smith,Application crashes on startup,The app crashes immediately after I launch it. This is blocking my work and very important,technical_issue,high,new,crash;blocking,support-agent-1
+CUST-003,user003@example.com,Carol White,Invoice not received,I haven't received my invoice for last month's subscription payment,billing_question,medium,new,invoice;billing,
+CUST-004,user004@example.com,David Brown,Add dark mode feature,Would love to see a dark mode option in the settings. This would be a great enhancement,feature_request,low,new,enhancement;ui,
+CUST-005,user005@example.com,Eve Davis,Button not working in checkout,The confirm button in checkout doesn't respond when clicked. Steps to reproduce: 1) Add item to cart 2) Go to checkout 3) Click confirm,bug_report,high,in_progress,checkout;bug,support-agent-2
+CUST-006,user006@example.com,Frank Miller,Password reset not working,Tried to reset my password multiple times but never received the email. Can't access my account,account_access,urgent,new,password;2fa,
+CUST-007,user007@example.com,Grace Lee,Production database down,Our production database is completely down. This is critical and affecting all users,technical_issue,urgent,new,production;critical;database,support-agent-1
+CUST-008,user008@example.com,Henry Wilson,Refund for duplicate charge,I was charged twice for the same transaction. Need a refund for the duplicate payment,billing_question,high,new,refund;payment,
+CUST-009,user009@example.com,Iris Moore,Export to PDF feature,Could you add an export to PDF feature? This would help with my workflow suggestion,feature_request,low,new,export;pdf,
+CUST-010,user010@example.com,Jack Taylor,Error 500 on submit,Getting error 500 when submitting the form. This bug appears consistently with these steps to reproduce it,bug_report,high,new,error;form,support-agent-2
+CUST-011,user011@example.com,Karen Anderson,Minor typo in settings page,There's a small typo on the settings page. It says 'Setings' instead of 'Settings'. Cosmetic issue,other,low,new,typo;minor,
+CUST-012,user012@example.com,Leo Thomas,Security vulnerability found,Found a potential security issue in the authentication flow. This needs immediate attention,technical_issue,urgent,in_progress,security;urgent,support-agent-3
+CUST-013,user013@example.com,Mary Jackson,Invoice format question,Can you provide invoices in a different format? Current format doesn't work with our accounting system,billing_question,medium,new,invoice;format,
+CUST-014,user014@example.com,Nathan Harris,Bulk upload feature,Need ability to upload multiple files at once. Current single-file upload is too slow for my use case,feature_request,medium,new,upload;bulk,
+CUST-015,user015@example.com,Olivia Martin,Data not saving,Changes I make are not being saved. Tried multiple times but data disappears after refresh. This is a defect,bug_report,high,new,save;data,support-agent-1
+CUST-016,user016@example.com,Peter Garcia,Account locked after failed login,My account got locked after entering wrong password three times. Need help accessing it,account_access,high,new,locked;login,
+CUST-017,user017@example.com,Quinn Martinez,App freezes randomly,Application freezes randomly during use. Have to force quit and restart. Very frustrating error,technical_issue,medium,new,freeze;crash,
+CUST-018,user018@example.com,Rachel Robinson,Payment method update,How do I update my payment method? Can't find the option in billing settings,billing_question,low,resolved,payment;billing,
+CUST-019,user019@example.com,Sam Clark,API documentation request,Would be great to have more detailed API documentation with code examples. Enhancement suggestion,feature_request,low,new,api;documentation,
+CUST-020,user020@example.com,Tina Rodriguez,Validation error blocking submission,Getting a validation error that blocks form submission even when all fields are filled correctly. Bug needs fixing,bug_report,medium,new,validation;form,support-agent-2
+CUST-021,user021@example.com,Uma Lewis,Can't change email address,Trying to update my email address in account settings but changes won't save,account_access,medium,new,email;settings,
+CUST-022,user022@example.com,Victor Walker,Memory leak causing crash,Application crashes after running for extended periods. Looks like a memory leak. Critical issue,technical_issue,urgent,in_progress,memory;crash;critical,support-agent-3
+CUST-023,user023@example.com,Wendy Hall,Subscription renewal question,When will my subscription renew and will I be charged the same amount or new pricing?,billing_question,low,closed,subscription;renewal,
+CUST-024,user024@example.com,Xavier Allen,Mobile app version,Any plans for a mobile app version? Would be a great addition to the platform,feature_request,medium,new,mobile;app,
+CUST-025,user025@example.com,Yara Young,Incorrect calculation in report,The totals in the monthly report are incorrect. Numbers don't add up. Defect in calculation logic,bug_report,high,new,calculation;report,support-agent-1
+CUST-026,user026@example.com,Zack King,Two-factor authentication setup,Need help setting up two-factor authentication on my account. Can't find the 2FA option,account_access,low,new,2fa;security,
+CUST-027,user027@example.com,Amy Wright,Server error 503,Getting 503 server error when trying to access the dashboard. This is blocking my work,technical_issue,high,new,error;503;blocking,support-agent-2
+CUST-028,user028@example.com,Ben Scott,Incorrect invoice amount,The invoice amount doesn't match my usage. Please review and correct the billing,billing_question,high,in_progress,invoice;billing,support-agent-3
+CUST-029,user029@example.com,Chloe Green,Keyboard shortcuts,Would love to have keyboard shortcuts for common actions. This enhancement would improve productivity,feature_request,low,new,shortcuts;enhancement,
+CUST-030,user030@example.com,Dan Adams,Null pointer exception,Getting null pointer exception when clicking on reports tab. This bug occurs every time,bug_report,medium,new,exception;error,
+CUST-031,user031@example.com,Emma Baker,Password requirements unclear,The password requirements aren't clear during signup. Kept getting rejected without explanation,account_access,low,resolved,password;signup,
+CUST-032,user032@example.com,Felix Nelson,Performance degradation,System performance has degraded significantly over the past week. Everything is slow and this is important,technical_issue,high,new,performance;slow,support-agent-1
+CUST-033,user033@example.com,Gina Carter,Payment failed but charged,Payment failed with error but my card was still charged. Need refund and explanation,billing_question,urgent,new,payment;refund;urgent,
+CUST-034,user034@example.com,Hugo Mitchell,Search functionality improvement,Search results could be more relevant. Suggestion to improve the search algorithm,feature_request,medium,new,search;enhancement,
+CUST-035,user035@example.com,Isla Perez,Page layout broken on mobile,The page layout is completely broken when viewed on mobile devices. Display bug needs fixing,bug_report,medium,new,mobile;layout,support-agent-2
+CUST-036,user036@example.com,James Roberts,Email verification not sent,Signed up but never received the email verification link. Can't access account features,account_access,high,new,email;verification,
+CUST-037,user037@example.com,Kelly Turner,Connection timeout,Keep getting connection timeout errors when uploading files. This is a persistent error,technical_issue,medium,new,timeout;upload,
+CUST-038,user038@example.com,Liam Phillips,Tax information on invoice,Need tax information added to invoices for accounting compliance purposes,billing_question,low,new,invoice;tax,
+CUST-039,user039@example.com,Mia Campbell,Notification preferences,Would like more granular notification preferences. Feature request for better control,feature_request,low,new,notifications;settings,
+CUST-040,user040@example.com,Noah Parker,Date picker not working,The date picker widget doesn't work in Safari browser. This is a reproducible bug,bug_report,medium,new,datepicker;safari,support-agent-1
+CUST-041,user041@example.com,Olivia Evans,Session timeout too short,Session times out too quickly. Keep having to log in every few minutes,account_access,medium,new,session;timeout,
+CUST-042,user042@example.com,Paul Edwards,API rate limit reached,Hitting API rate limits too frequently. This is blocking integration work. Critical for us,technical_issue,urgent,in_progress,api;ratelimit;blocking,support-agent-3
+CUST-043,user043@example.com,Quinn Collins,Promo code not working,Tried to apply promo code at checkout but it says invalid even though code is correct,billing_question,medium,new,promo;discount,
+CUST-044,user044@example.com,Rose Stewart,Batch processing feature,Need ability to process records in batches. Would be a useful enhancement for large datasets,feature_request,medium,new,batch;processing,
+CUST-045,user045@example.com,Steve Morris,Images not loading,Images in the gallery section are not loading. Getting 404 errors. Defect needs attention,bug_report,high,new,images;404,support-agent-2
+CUST-046,user046@example.com,Tara Rogers,Account deletion request,How do I delete my account permanently? Can't find the option in settings,account_access,low,new,deletion;account,
+CUST-047,user047@example.com,Uma Reed,SSL certificate expired,Getting SSL certificate error when accessing the site. Security issue that needs immediate fix,technical_issue,urgent,new,ssl;security;urgent,support-agent-1
+CUST-048,user048@example.com,Vince Cook,Billing cycle question,Confused about when my billing cycle starts and ends. Need clarification on invoice dates,billing_question,low,closed,billing;cycle,
+CUST-049,user049@example.com,Wanda Morgan,Multi-language support,Would love to see support for multiple languages. This would be a great feature addition,feature_request,medium,new,i18n;languages,
+CUST-050,user050@example.com,Xavier Bell,Sorting not working correctly,Table sorting doesn't work correctly on the reports page. Clicking headers does nothing. This is a bug,bug_report,low,new,sorting;table,

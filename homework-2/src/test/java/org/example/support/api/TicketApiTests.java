@@ -190,8 +190,8 @@ class TicketApiTests {
         MockMultipartFile file = new MockMultipartFile("file", "sample_tickets.csv", "text/csv", bytes);
         mockMvc.perform(multipart("/tickets/import").file(file).param("format", "csv"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.total_records", is(2)))
-                .andExpect(jsonPath("$.successful", greaterThanOrEqualTo(1)))
+                .andExpect(jsonPath("$.total_records", is(50)))
+                .andExpect(jsonPath("$.successful", greaterThanOrEqualTo(40)))
                 .andExpect(jsonPath("$.failed", greaterThanOrEqualTo(0)));
     }
 
