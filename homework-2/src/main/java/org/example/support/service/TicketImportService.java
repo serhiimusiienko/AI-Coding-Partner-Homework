@@ -2,6 +2,7 @@ package org.example.support.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
@@ -34,6 +35,8 @@ public class TicketImportService {
         this.validator = validator;
         this.objectMapper = objectMapper;
         this.xmlMapper = new XmlMapper();
+        // XML fixtures use camelCase element names; align mapper accordingly
+        this.xmlMapper.setPropertyNamingStrategy(PropertyNamingStrategies.LOWER_CAMEL_CASE);
     }
 
     public ImportSummary importJson(InputStream in) throws IOException {
@@ -42,9 +45,9 @@ public class TicketImportService {
     }
 
     public ImportSummary importXml(InputStream in) throws IOException {
-        // Expect XML as a root list <tickets><ticket>...</ticket></tickets>
-        // Map to List<Ticket>
-        List<Ticket> tickets = xmlMapper.readValue(in, new TypeReference<List<Ticket>>(){});
+        // Expect XML as <tickets><ticket>...</ticket></tickets>
+        XmlTickets wrapper = xmlMapper.readValue(in, XmlTickets.class);
+        List<Ticket> tickets = wrapper != null ? wrapper.getTickets() : List.of();
         return persistWithValidation(tickets);
     }
 

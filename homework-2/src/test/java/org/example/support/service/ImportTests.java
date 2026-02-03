@@ -37,4 +37,15 @@ class ImportTests {
             assertEquals(1, summary.getFailed());
         }
     }
+
+    @Test
+    void importXmlParsesValidTickets() throws Exception {
+        try (InputStream in = getClass().getResourceAsStream("/fixtures/valid_tickets.xml")) {
+            assertNotNull(in);
+            var summary = importService.importXml(in);
+            assertEquals(2, summary.getTotalRecords());
+            assertEquals(2, summary.getSuccessful());
+            assertEquals(0, summary.getFailed());
+        }
+    }
 }

@@ -1,0 +1,16 @@
+<tickets>
+  <ticket>
+    <customerId>CUST-30</customerId>
+    <customerEmail>thirty@example.com</customerEmail>
+    <customerName>Thirty</customerName>
+    <subject>Login issue</subject>
+    <description>Cannot access account</description>
+  </ticket>
+  <ticket>
+    <customerId>CUST-31</customerId>
+    <customerEmail>thirtyone@example.com</customerEmail>
+    <customerName>Thirty One</customerName>
+    <subject>Payment refund</subject>
+    <description>Requesting refund for last invoice</description>
+  </ticket>
+</tickets>
