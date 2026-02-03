@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.mock.web.MockMultipartFile;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,11 +55,16 @@ class TicketApiTests {
                 body.put("subject", "Login issue");
                 body.put("description", "Cannot access account");
 
-                createTicket(body);
+                String id = createTicket(body);
 
         mockMvc.perform(get("/tickets"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", not(empty())));
+
+        // Get by id
+        mockMvc.perform(get("/tickets/" + id))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.subject", is("Login issue")));
     }
 
     @Test
@@ -85,6 +91,24 @@ class TicketApiTests {
                                 .andExpect(status().isCreated())
                                 .andExpect(jsonPath("$.priority", is("URGENT")))
                                 .andExpect(jsonPath("$.category", anyOf(is("TECHNICAL_ISSUE"), is("BUG_REPORT"))));
+        }
+
+        @Test
+        void autoClassifyEndpointReturnsResult() throws Exception {
+                Map<String, Object> body = new HashMap<>();
+                body.put("customer_id", "CUST-5");
+                body.put("customer_email", "user5@example.com");
+                body.put("customer_name", "User Five");
+                body.put("subject", "Payment problem");
+                body.put("description", "Credit card declined on checkout");
+
+                String id = createTicket(body);
+
+                mockMvc.perform(post("/tickets/" + id + "/auto-classify"))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$.category", notNullValue()))
+                                .andExpect(jsonPath("$.priority", notNullValue()))
+                                .andExpect(jsonPath("$.confidence", greaterThan(0.0)));
         }
 
     @Test
@@ -133,5 +157,48 @@ class TicketApiTests {
         mockMvc.perform(get("/tickets?from=1970-01-01T00:00:00Z&to=2100-01-01T00:00:00Z"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", not(empty())));
+    }
+
+    @Test
+    void deleteTicketRemovesResource() throws Exception {
+        Map<String, Object> body = new HashMap<>();
+        body.put("customer_id", "CUST-6");
+        body.put("customer_email", "user6@example.com");
+        body.put("customer_name", "User Six");
+        body.put("subject", "Minor issue");
+        body.put("description", "Minor description long enough");
+
+        String id = createTicket(body);
+
+        mockMvc.perform(delete("/tickets/" + id))
+                .andExpect(status().isNoContent());
+
+        // Verify 404 afterwards
+        mockMvc.perform(get("/tickets/" + id))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void deleteNotFoundGives404() throws Exception {
+        mockMvc.perform(delete("/tickets/00000000-0000-0000-0000-000000000000"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void importEndpointHandlesCsv() throws Exception {
+        byte[] bytes = this.getClass().getResourceAsStream("/fixtures/sample_tickets.csv").readAllBytes();
+        MockMultipartFile file = new MockMultipartFile("file", "sample_tickets.csv", "text/csv", bytes);
+        mockMvc.perform(multipart("/tickets/import").file(file).param("format", "csv"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.total_records", is(2)))
+                .andExpect(jsonPath("$.successful", greaterThanOrEqualTo(1)))
+                .andExpect(jsonPath("$.failed", greaterThanOrEqualTo(0)));
+    }
+
+    @Test
+    void importEndpointRejectsUnknownFormat() throws Exception {
+        MockMultipartFile file = new MockMultipartFile("file", "data.bin", "application/octet-stream", new byte[]{1,2,3});
+        mockMvc.perform(multipart("/tickets/import").file(file).param("format", "unknown"))
+                .andExpect(status().isBadRequest());
     }
 }

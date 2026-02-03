@@ -2,11 +2,11 @@
 
 This summarizes the latest JaCoCo coverage generated from the test suite.
 
-- Overall Instruction: 71.4% (1148/1608)
-- Overall Branch: 50.8% (66/130)
-- Overall Line: 78.2% (259/331)
-- Overall Complexity: 59.4% (123/207)
-- Overall Method: 73.8% (104/141)
+- Overall Instruction: 82.8% (1331/1608)
+- Overall Branch: 63.1% (82/130)
+- Overall Line: 86.1% (285/331)
+- Overall Complexity: 67.1% (139/207)
+- Overall Method: 80.8% (114/141)
 - Overall Class: 94.7% (18/19)
 
 Full HTML report:
