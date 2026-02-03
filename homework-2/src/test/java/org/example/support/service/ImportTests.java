@@ -48,4 +48,21 @@ class ImportTests {
             assertEquals(0, summary.getFailed());
         }
     }
+
+    // Tests from ImportNegativeTests
+    @Test
+    void malformedCsvMissingHeaderLeadsToException() throws Exception {
+        try (InputStream in = getClass().getResourceAsStream("/fixtures/malformed_tickets.csv")) {
+            assertNotNull(in);
+            assertThrows(Exception.class, () -> importService.importCsv(in));
+        }
+    }
+
+    @Test
+    void malformedXmlLeadsToException() throws Exception {
+        try (InputStream in = getClass().getResourceAsStream("/fixtures/malformed_tickets.xml")) {
+            assertNotNull(in);
+            assertThrows(Exception.class, () -> importService.importXml(in));
+        }
+    }
 }

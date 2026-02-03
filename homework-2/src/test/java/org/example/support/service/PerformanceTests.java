@@ -102,7 +102,7 @@ class PerformanceTests {
 
         ExecutorService executor = Executors.newFixedThreadPool(20);
         long start = System.currentTimeMillis();
-        
+
         List<CompletableFuture<Void>> futures = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             final int index = i % tickets.size();
@@ -116,7 +116,7 @@ class PerformanceTests {
         CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).get();
         executor.shutdown();
         executor.awaitTermination(5, TimeUnit.SECONDS);
-        
+
         long duration = System.currentTimeMillis() - start;
         assertTrue(duration < 1000, "20 concurrent read operations took too long: " + duration + "ms");
     }

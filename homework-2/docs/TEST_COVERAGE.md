@@ -8,6 +8,12 @@ This summarizes the latest JaCoCo coverage generated from the test suite.
 - Overall Complexity: 87.0% (180/207)
 - Overall Method: 94.3% (133/141)
 - Overall Class: 100.0% (19/19)
+ - Overall Instruction: 95.7% (1538/1608)
+ - Overall Branch: 86.2% (112/130)
+ - Overall Line: 96.7% (320/331)
+ - Overall Complexity: 87.4% (181/207)
+ - Overall Method: 94.3% (133/141)
+ - Overall Class: 100.0% (19/19)
 
 Full HTML report:
 - [homework-2/build/reports/jacoco/test/html/index.html](homework-2/build/reports/jacoco/test/html/index.html)

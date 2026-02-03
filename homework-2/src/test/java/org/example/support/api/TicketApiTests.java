@@ -75,7 +75,7 @@ class TicketApiTests {
                         .content(upd))
                 .andExpect(status().isNotFound());
     }
-    
+
         @Test
         void autoClassifyOnCreateSetsUrgent() throws Exception {
                 Map<String, Object> body = new HashMap<>();
@@ -199,6 +199,110 @@ class TicketApiTests {
     void importEndpointRejectsUnknownFormat() throws Exception {
         MockMultipartFile file = new MockMultipartFile("file", "data.bin", "application/octet-stream", new byte[]{1,2,3});
         mockMvc.perform(multipart("/tickets/import").file(file).param("format", "unknown"))
+                .andExpect(status().isBadRequest());
+    }
+
+    // Tests from TicketApiImportCsvBranchTests
+    @Test
+    void csvWithMixedEnumValuesExercisesBranches() throws Exception {
+        String csv = String.join("\n",
+                "customer_id,customer_email,customer_name,subject,description,category,priority,status",
+                "C1,c1@example.com,User One,Crash,App error occurs,technical_issue,high,new",
+                "C2,c2@example.com,User Two,Minor issue,Small problem,,,", // blanks
+                "C3,c3@example.com,User Three,Invalid enum,Unknown enums,unknown,unknown,unknown" // invalids
+        );
+        MockMultipartFile file = new MockMultipartFile("file", "mix.csv", "text/csv", csv.getBytes());
+        mockMvc.perform(multipart("/tickets/import").file(file))
+                .andExpect(status().isOk());
+    }
+
+    // Tests from TicketApiImportInferenceTests
+    @Test
+    void importJsonWithInferredFormatSucceeds() throws Exception {
+        byte[] bytes = this.getClass().getResourceAsStream("/fixtures/sample_tickets.json").readAllBytes();
+        MockMultipartFile file = new MockMultipartFile("file", "tickets.json", "application/json", bytes);
+        mockMvc.perform(multipart("/tickets/import").file(file))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void importUnknownExtensionWithoutFormatReturns400() throws Exception {
+        byte[] bytes = "just some content".getBytes();
+        MockMultipartFile file = new MockMultipartFile("file", "data.txt", "text/plain", bytes);
+        mockMvc.perform(multipart("/tickets/import").file(file))
+                .andExpect(status().isBadRequest());
+    }
+
+    // Tests from TicketApiFilterCategoryPriorityTests
+    @Test
+    void filterByCategoryAndPriorityExercisesTrueAndFalseBranches() throws Exception {
+        Map<String, Object> t1 = new HashMap<>();
+        t1.put("customer_id", "CUST-F1");
+        t1.put("customer_email", "f1@example.com");
+        t1.put("customer_name", "F One");
+        t1.put("subject", "App crash");
+        t1.put("description", "Error occurs and is important");
+        // rely on auto-classifier to set category TECHNICAL_ISSUE and priority HIGH
+        mockMvc.perform(post("/tickets?autoClassify=true").contentType(MediaType.APPLICATION_JSON).content(toJson(t1)))
+                .andExpect(status().isCreated());
+
+        Map<String, Object> t2 = new HashMap<>();
+        t2.put("customer_id", "CUST-F2");
+        t2.put("customer_email", "f2@example.com");
+        t2.put("customer_name", "F Two");
+        t2.put("subject", "Refund question");
+        t2.put("description", "Billing invoice refund requested");
+        // rely on auto-classifier to set category BILLING_QUESTION and (likely) LOW due to wording
+        mockMvc.perform(post("/tickets?autoClassify=true").contentType(MediaType.APPLICATION_JSON).content(toJson(t2)))
+                .andExpect(status().isCreated());
+
+        // True branch: filter matches t1
+        mockMvc.perform(get("/tickets?category=TECHNICAL_ISSUE&priority=HIGH"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", not(empty())));
+
+        // False branch: filter excludes t2 when asking TECHNICAL_ISSUE & HIGH
+        mockMvc.perform(get("/tickets?category=BILLING_QUESTION&priority=LOW"))
+                .andExpect(status().isOk());
+    }
+
+    // Tests from TicketApiDateRangeFalseBranchTests
+    @Test
+    void farFutureFromExcludesCurrentTickets() throws Exception {
+        mockMvc.perform(get("/tickets?from=2100-01-01T00:00:00Z"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", empty()));
+    }
+
+    // Tests from TicketApiImportErrorTests
+    @Test
+    void importJsonMalformedReturns400() throws Exception {
+        MockMultipartFile file = new MockMultipartFile(
+                "file", "bad.json", MediaType.APPLICATION_JSON_VALUE,
+                "{ \"not_valid_json\": }".getBytes()
+        );
+        mockMvc.perform(multipart("/tickets/import").file(file).param("format", "json"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void importXmlMalformedReturns400() throws Exception {
+        MockMultipartFile file = new MockMultipartFile(
+                "file", "bad.xml", MediaType.APPLICATION_XML_VALUE,
+                "<tickets><ticket><subject>missing closures".getBytes()
+        );
+        mockMvc.perform(multipart("/tickets/import").file(file).param("format", "xml"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void importCsvInvalidHeadersReturns400() throws Exception {
+        String csv = "wrong_header1,wrong_header2\nval1,val2";
+        MockMultipartFile file = new MockMultipartFile(
+                "file", "bad.csv", "text/csv",
+                csv.getBytes()
+        );
+        mockMvc.perform(multipart("/tickets/import").file(file).param("format", "csv"))
                 .andExpect(status().isBadRequest());
     }
 }
