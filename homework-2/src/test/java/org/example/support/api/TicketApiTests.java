@@ -24,38 +24,38 @@ class TicketApiTests {
     @Autowired
     MockMvc mockMvc;
 
-        // Use snake_case to match API naming strategy
-        private final ObjectMapper mapper = new ObjectMapper()
-                        .setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
+    // Use snake_case to match API naming strategy
+    private final ObjectMapper mapper = new ObjectMapper()
+            .setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
 
-        private String toJson(Map<String, Object> payload) throws Exception {
-                return mapper.writeValueAsString(payload);
-        }
+    private String toJson(Map<String, Object> payload) throws Exception {
+        return mapper.writeValueAsString(payload);
+    }
 
-        private String extractId(String json) throws Exception {
-                return mapper.readTree(json).path("id").asText();
-        }
+    private String extractId(String json) throws Exception {
+        return mapper.readTree(json).path("id").asText();
+    }
 
-        private String createTicket(Map<String, Object> payload) throws Exception {
-                String res = mockMvc.perform(post("/tickets")
-                                                .contentType(MediaType.APPLICATION_JSON)
-                                                .content(toJson(payload)))
-                                .andExpect(status().isCreated())
-                                .andExpect(jsonPath("$.id", notNullValue()))
-                                .andReturn().getResponse().getContentAsString();
-                return extractId(res);
-        }
+    private String createTicket(Map<String, Object> payload) throws Exception {
+        String res = mockMvc.perform(post("/tickets")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(toJson(payload)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id", notNullValue()))
+                .andReturn().getResponse().getContentAsString();
+        return extractId(res);
+    }
 
     @Test
     void createAndGetTicket() throws Exception {
-                Map<String, Object> body = new HashMap<>();
-                body.put("customer_id", "CUST-1");
-                body.put("customer_email", "user@example.com");
-                body.put("customer_name", "User");
-                body.put("subject", "Login issue");
-                body.put("description", "Cannot access account");
+        Map<String, Object> body = new HashMap<>();
+        body.put("customer_id", "CUST-1");
+        body.put("customer_email", "user@example.com");
+        body.put("customer_name", "User");
+        body.put("subject", "Login issue");
+        body.put("description", "Cannot access account");
 
-                String id = createTicket(body);
+        String id = createTicket(body);
 
         mockMvc.perform(get("/tickets"))
                 .andExpect(status().isOk())
@@ -76,40 +76,40 @@ class TicketApiTests {
                 .andExpect(status().isNotFound());
     }
 
-        @Test
-        void autoClassifyOnCreateSetsUrgent() throws Exception {
-                Map<String, Object> body = new HashMap<>();
-                body.put("customer_id", "CUST-2");
-                body.put("customer_email", "user2@example.com");
-                body.put("customer_name", "User Two");
-                body.put("subject", "Production down");
-                body.put("description", "App crash causes outage");
+    @Test
+    void autoClassifyOnCreateSetsUrgent() throws Exception {
+        Map<String, Object> body = new HashMap<>();
+        body.put("customer_id", "CUST-2");
+        body.put("customer_email", "user2@example.com");
+        body.put("customer_name", "User Two");
+        body.put("subject", "Production down");
+        body.put("description", "App crash causes outage");
 
-                mockMvc.perform(post("/tickets?autoClassify=true")
-                                                .contentType(MediaType.APPLICATION_JSON)
-                                                .content(toJson(body)))
-                                .andExpect(status().isCreated())
-                                .andExpect(jsonPath("$.priority", is("URGENT")))
-                                .andExpect(jsonPath("$.category", anyOf(is("TECHNICAL_ISSUE"), is("BUG_REPORT"))));
-        }
+        mockMvc.perform(post("/tickets?autoClassify=true")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(toJson(body)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.priority", is("URGENT")))
+                .andExpect(jsonPath("$.category", anyOf(is("TECHNICAL_ISSUE"), is("BUG_REPORT"))));
+    }
 
-        @Test
-        void autoClassifyEndpointReturnsResult() throws Exception {
-                Map<String, Object> body = new HashMap<>();
-                body.put("customer_id", "CUST-5");
-                body.put("customer_email", "user5@example.com");
-                body.put("customer_name", "User Five");
-                body.put("subject", "Payment problem");
-                body.put("description", "Credit card declined on checkout");
+    @Test
+    void autoClassifyEndpointReturnsResult() throws Exception {
+        Map<String, Object> body = new HashMap<>();
+        body.put("customer_id", "CUST-5");
+        body.put("customer_email", "user5@example.com");
+        body.put("customer_name", "User Five");
+        body.put("subject", "Payment problem");
+        body.put("description", "Credit card declined on checkout");
 
-                String id = createTicket(body);
+        String id = createTicket(body);
 
-                mockMvc.perform(post("/tickets/" + id + "/auto-classify"))
-                                .andExpect(status().isOk())
-                                .andExpect(jsonPath("$.category", notNullValue()))
-                                .andExpect(jsonPath("$.priority", notNullValue()))
-                                .andExpect(jsonPath("$.confidence", greaterThan(0.0)));
-        }
+        mockMvc.perform(post("/tickets/" + id + "/auto-classify"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.category", notNullValue()))
+                .andExpect(jsonPath("$.priority", notNullValue()))
+                .andExpect(jsonPath("$.confidence", greaterThan(0.0)));
+    }
 
     @Test
     void filterByTagAndStatus() throws Exception {
@@ -197,7 +197,9 @@ class TicketApiTests {
 
     @Test
     void importEndpointRejectsUnknownFormat() throws Exception {
-        MockMultipartFile file = new MockMultipartFile("file", "data.bin", "application/octet-stream", new byte[]{1,2,3});
+        MockMultipartFile file = new MockMultipartFile(
+                "file", "data.bin", "application/octet-stream", new byte[]{1, 2, 3}
+        );
         mockMvc.perform(multipart("/tickets/import").file(file).param("format", "unknown"))
                 .andExpect(status().isBadRequest());
     }
@@ -243,7 +245,9 @@ class TicketApiTests {
         t1.put("subject", "App crash");
         t1.put("description", "Error occurs and is important");
         // rely on auto-classifier to set category TECHNICAL_ISSUE and priority HIGH
-        mockMvc.perform(post("/tickets?autoClassify=true").contentType(MediaType.APPLICATION_JSON).content(toJson(t1)))
+        mockMvc.perform(post("/tickets?autoClassify=true")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(toJson(t1)))
                 .andExpect(status().isCreated());
 
         Map<String, Object> t2 = new HashMap<>();
@@ -253,7 +257,9 @@ class TicketApiTests {
         t2.put("subject", "Refund question");
         t2.put("description", "Billing invoice refund requested");
         // rely on auto-classifier to set category BILLING_QUESTION and (likely) LOW due to wording
-        mockMvc.perform(post("/tickets?autoClassify=true").contentType(MediaType.APPLICATION_JSON).content(toJson(t2)))
+        mockMvc.perform(post("/tickets?autoClassify=true")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(toJson(t2)))
                 .andExpect(status().isCreated());
 
         // True branch: filter matches t1
