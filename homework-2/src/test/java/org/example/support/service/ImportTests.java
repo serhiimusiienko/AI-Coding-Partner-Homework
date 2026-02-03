@@ -17,7 +17,7 @@ class ImportTests {
 
     @Test
     void importJsonSummarizesSuccessAndFailures() throws Exception {
-        try (InputStream in = getClass().getResourceAsStream("/fixtures/sample_tickets.json")) {
+        try (InputStream in = getClass().getResourceAsStream("/fixtures/invalid_tickets.json")) {
             assertNotNull(in);
             ImportSummary summary = importService.importJson(in);
             assertEquals(3, summary.getTotalRecords());
@@ -40,7 +40,7 @@ class ImportTests {
 
     @Test
     void importXmlParsesValidTickets() throws Exception {
-        try (InputStream in = getClass().getResourceAsStream("/fixtures/valid_tickets.xml")) {
+        try (InputStream in = getClass().getResourceAsStream("/fixtures/sample_tickets.xml")) {
             assertNotNull(in);
             var summary = importService.importXml(in);
             assertEquals(30, summary.getTotalRecords());

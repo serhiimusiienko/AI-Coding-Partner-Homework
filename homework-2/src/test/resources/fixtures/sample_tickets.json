@@ -1,23 +1,142 @@
 [
   {
-    "customer_id": "CUST-10",
-    "customer_email": "ten@example.com",
-    "customer_name": "Ten",
-    "subject": "App crash",
-    "description": "App crashes on launch after update"
+    "customer_id": "JSON-001",
+    "customer_email": "json001@example.com",
+    "customer_name": "Alex Rivera",
+    "subject": "Can't access account",
+    "description": "I can't access my account after enabling 2FA. This is urgent and blocking me."
   },
   {
-    "customer_id": "CUST-11",
-    "customer_email": "eleven@example.com",
-    "customer_name": "Eleven",
-    "subject": "Refund",
-    "description": "Requesting refund for last invoice"
+    "customer_id": "JSON-002",
+    "customer_email": "json002@example.com",
+    "customer_name": "Bianca Woods",
+    "subject": "Password reset link expired",
+    "description": "Password reset link expires immediately. Please help me login again."
   },
   {
-    "customer_id": "CUST-12",
-    "customer_email": "invalid-email",
-    "customer_name": "Bad",
-    "subject": "x",
-    "description": "short"
+    "customer_id": "JSON-003",
+    "customer_email": "json003@example.com",
+    "customer_name": "Chris Patel",
+    "subject": "App crash on startup",
+    "description": "App crashes with an error code 500 on startup after the latest update."
+  },
+  {
+    "customer_id": "JSON-004",
+    "customer_email": "json004@example.com",
+    "customer_name": "Dana Kim",
+    "subject": "Invoice not received",
+    "description": "I did not receive the monthly invoice. Need the invoice for payment reconciliation."
+  },
+  {
+    "customer_id": "JSON-005",
+    "customer_email": "json005@example.com",
+    "customer_name": "Evan Brooks",
+    "subject": "Refund request",
+    "description": "Requesting a refund for the last invoice due to double charge."
+  },
+  {
+    "customer_id": "JSON-006",
+    "customer_email": "json006@example.com",
+    "customer_name": "Farah Ali",
+    "subject": "Feature request: export",
+    "description": "Would love a bulk export feature. This enhancement would save time for reporting."
+  },
+  {
+    "customer_id": "JSON-007",
+    "customer_email": "json007@example.com",
+    "customer_name": "Gabe Turner",
+    "subject": "Minor UI issue",
+    "description": "Minor cosmetic issue: button alignment on mobile looks off, but not blocking."
+  },
+  {
+    "customer_id": "JSON-008",
+    "customer_email": "json008@example.com",
+    "customer_name": "Hana Sato",
+    "subject": "Important: cannot upload attachments",
+    "description": "Uploading attachments fails with an error. This is important for my workflow."
+  },
+  {
+    "customer_id": "JSON-009",
+    "customer_email": "json009@example.com",
+    "customer_name": "Ivan Petrov",
+    "subject": "Billing question",
+    "description": "Question about payment method update and invoice history."
+  },
+  {
+    "customer_id": "JSON-010",
+    "customer_email": "json010@example.com",
+    "customer_name": "Jules Martin",
+    "subject": "Login loop",
+    "description": "After login, I get redirected back to login page repeatedly."
+  },
+  {
+    "customer_id": "JSON-011",
+    "customer_email": "json011@example.com",
+    "customer_name": "Kara Singh",
+    "subject": "Blocking issue: checkout fails",
+    "description": "Checkout fails and is blocking purchases. Please fix ASAP."
+  },
+  {
+    "customer_id": "JSON-012",
+    "customer_email": "json012@example.com",
+    "customer_name": "Leo Chen",
+    "subject": "Error on settings page",
+    "description": "Settings page throws an error when saving preferences."
+  },
+  {
+    "customer_id": "JSON-013",
+    "customer_email": "json013@example.com",
+    "customer_name": "Mina Park",
+    "subject": "Suggestion: add dark mode",
+    "description": "Suggestion to add dark mode for better usability at night."
+  },
+  {
+    "customer_id": "JSON-014",
+    "customer_email": "json014@example.com",
+    "customer_name": "Noah Evans",
+    "subject": "Bug report: search results incorrect",
+    "description": "Bug: search returns incorrect results. Repro steps: search for 'abc' then sort by date."
+  },
+  {
+    "customer_id": "JSON-015",
+    "customer_email": "json015@example.com",
+    "customer_name": "Olivia Reed",
+    "subject": "Account locked",
+    "description": "My account got locked after multiple attempts. Need access restored."
+  },
+  {
+    "customer_id": "JSON-016",
+    "customer_email": "json016@example.com",
+    "customer_name": "Pavel Novak",
+    "subject": "Performance slow",
+    "description": "The app is slow when loading the dashboard; it feels laggy and impacts work."
+  },
+  {
+    "customer_id": "JSON-017",
+    "customer_email": "json017@example.com",
+    "customer_name": "Quinn Harper",
+    "subject": "API returns 500",
+    "description": "API returns 500 error intermittently when fetching tickets."
+  },
+  {
+    "customer_id": "JSON-018",
+    "customer_email": "json018@example.com",
+    "customer_name": "Rosa Diaz",
+    "subject": "Payment declined",
+    "description": "Payment declined even though card is valid. Need help resolving billing issue."
+  },
+  {
+    "customer_id": "JSON-019",
+    "customer_email": "json019@example.com",
+    "customer_name": "Sam Lee",
+    "subject": "Security concern",
+    "description": "Security concern: I suspect suspicious login activity. Please investigate immediately."
+  },
+  {
+    "customer_id": "JSON-020",
+    "customer_email": "json020@example.com",
+    "customer_name": "Tara Miles",
+    "subject": "Other question",
+    "description": "General question about account settings and notifications."
   }
 ]

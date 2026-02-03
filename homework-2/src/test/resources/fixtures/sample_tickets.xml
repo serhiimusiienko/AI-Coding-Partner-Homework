@@ -1,0 +1,212 @@
+<tickets>
+  <ticket>
+    <customerId>XML-001</customerId>
+    <customerEmail>xml001@example.com</customerEmail>
+    <customerName>Alice Cooper</customerName>
+    <subject>Login credentials not working</subject>
+    <description>I cannot login with my credentials. Keep getting authentication failure message which is urgent</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-002</customerId>
+    <customerEmail>xml002@example.com</customerEmail>
+    <customerName>Bob Johnson</customerName>
+    <subject>Application error on launch</subject>
+    <description>App shows error code 500 on startup. This is blocking my important work</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-003</customerId>
+    <customerEmail>xml003@example.com</customerEmail>
+    <customerName>Carol Smith</customerName>
+    <subject>Billing invoice missing</subject>
+    <description>Did not receive monthly invoice for payment processing</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-004</customerId>
+    <customerEmail>xml004@example.com</customerEmail>
+    <customerName>David Lee</customerName>
+    <subject>Request for export feature</subject>
+    <description>Would love to have bulk export functionality as an enhancement suggestion</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-005</customerId>
+    <customerEmail>xml005@example.com</customerEmail>
+    <customerName>Emma Davis</customerName>
+    <subject>Form validation bug</subject>
+    <description>Submit button not working. Bug can be reproduced with these defect steps</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-006</customerId>
+    <customerEmail>xml006@example.com</customerEmail>
+    <customerName>Frank White</customerName>
+    <subject>Password reset email not received</subject>
+    <description>Tried password reset but email never arrives. Cannot access account</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-007</customerId>
+    <customerEmail>xml007@example.com</customerEmail>
+    <customerName>Grace Martin</customerName>
+    <subject>Production server crash</subject>
+    <description>Critical production down situation. Server crashed and affecting all users</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-008</customerId>
+    <customerEmail>xml008@example.com</customerEmail>
+    <customerName>Henry Brown</customerName>
+    <subject>Double charged on payment</subject>
+    <description>Was charged twice for same invoice. Need refund for duplicate billing</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-009</customerId>
+    <customerEmail>xml009@example.com</customerEmail>
+    <customerName>Iris Wilson</customerName>
+    <subject>Dark theme feature request</subject>
+    <description>Suggestion to add dark mode theme option for better user experience</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-010</customerId>
+    <customerEmail>xml010@example.com</customerEmail>
+    <customerName>Jack Martinez</customerName>
+    <subject>Image upload defect</subject>
+    <description>Cannot upload images. Getting error with reproduction steps that show bug</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-011</customerId>
+    <customerEmail>xml011@example.com</customerEmail>
+    <customerName>Kelly Garcia</customerName>
+    <subject>Minor cosmetic issue</subject>
+    <description>Small UI spacing issue on settings page. Low priority cosmetic problem</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-012</customerId>
+    <customerEmail>xml012@example.com</customerEmail>
+    <customerName>Liam Anderson</customerName>
+    <subject>Security vulnerability detected</subject>
+    <description>Found critical security flaw in authentication. Needs urgent attention immediately</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-013</customerId>
+    <customerEmail>xml013@example.com</customerEmail>
+    <customerName>Mia Taylor</customerName>
+    <subject>Invoice format inquiry</subject>
+    <description>Need different invoice format for billing compliance purposes</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-014</customerId>
+    <customerEmail>xml014@example.com</customerEmail>
+    <customerName>Noah Thomas</customerName>
+    <subject>Batch import feature</subject>
+    <description>Feature request for batch import capability to improve workflow</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-015</customerId>
+    <customerEmail>xml015@example.com</customerEmail>
+    <customerName>Olivia Jackson</customerName>
+    <subject>Data loss bug</subject>
+    <description>Data disappears after save. Can reproduce this defect consistently</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-016</customerId>
+    <customerEmail>xml016@example.com</customerEmail>
+    <customerName>Paul Moore</customerName>
+    <subject>Account locked issue</subject>
+    <description>Account locked after failed login attempts. Need access restored</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-017</customerId>
+    <customerEmail>xml017@example.com</customerEmail>
+    <customerName>Quinn Lewis</customerName>
+    <subject>Performance degradation</subject>
+    <description>System running slow with error messages appearing frequently</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-018</customerId>
+    <customerEmail>xml018@example.com</customerEmail>
+    <customerName>Rachel Walker</customerName>
+    <subject>Payment method update</subject>
+    <description>How to change billing payment method in account settings</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-019</customerId>
+    <customerEmail>xml019@example.com</customerEmail>
+    <customerName>Sam Hill</customerName>
+    <subject>API rate limit enhancement</subject>
+    <description>Request to increase API limits as enhancement suggestion</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-020</customerId>
+    <customerEmail>xml020@example.com</customerEmail>
+    <customerName>Tina Scott</customerName>
+    <subject>Validation error bug</subject>
+    <description>Form showing validation error incorrectly. Bug needs fixing with proper reproduction</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-021</customerId>
+    <customerEmail>xml021@example.com</customerEmail>
+    <customerName>Uma Green</customerName>
+    <subject>Email change not saving</subject>
+    <description>Cannot update email address in account profile settings</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-022</customerId>
+    <customerEmail>xml022@example.com</customerEmail>
+    <customerName>Victor Adams</customerName>
+    <subject>Memory leak crash</subject>
+    <description>Application crashes after extended use. Critical error affecting production</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-023</customerId>
+    <customerEmail>xml023@example.com</customerEmail>
+    <customerName>Wendy Baker</customerName>
+    <subject>Subscription billing question</subject>
+    <description>Question about renewal date and billing cycle timing</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-024</customerId>
+    <customerEmail>xml024@example.com</customerEmail>
+    <customerName>Xavier Carter</customerName>
+    <subject>Mobile app suggestion</subject>
+    <description>Enhancement request for mobile application version of platform</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-025</customerId>
+    <customerEmail>xml025@example.com</customerEmail>
+    <customerName>Yara Mitchell</customerName>
+    <subject>Report calculation defect</subject>
+    <description>Numbers in report dont add up correctly. Bug in calculation logic</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-026</customerId>
+    <customerEmail>xml026@example.com</customerEmail>
+    <customerName>Zack Perez</customerName>
+    <subject>Two-factor auth setup</subject>
+    <description>Help needed with 2FA two-factor authentication configuration on account</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-027</customerId>
+    <customerEmail>xml027@example.com</customerEmail>
+    <customerName>Amy Roberts</customerName>
+    <subject>Server 503 error</subject>
+    <description>Getting 503 service unavailable error. Important and blocking work</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-028</customerId>
+    <customerEmail>xml028@example.com</customerEmail>
+    <customerName>Ben Turner</customerName>
+    <subject>Wrong invoice total</subject>
+    <description>Invoice amount incorrect. Please review billing charges</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-029</customerId>
+    <customerEmail>xml029@example.com</customerEmail>
+    <customerName>Chloe Phillips</customerName>
+    <subject>Keyboard shortcut feature</subject>
+    <description>Request for keyboard shortcuts enhancement to improve productivity</description>
+  </ticket>
+  <ticket>
+    <customerId>XML-030</customerId>
+    <customerEmail>xml030@example.com</customerEmail>
+    <customerName>Dan Campbell</customerName>
+    <subject>Null pointer exception</subject>
+    <description>Application throws null pointer exception error. Bug occurs on reports tab</description>
+  </ticket>
+</tickets>

@@ -1,0 +1,23 @@
+[
+  {
+    "customer_id": "CUST-10",
+    "customer_email": "ten@example.com",
+    "customer_name": "Ten",
+    "subject": "App crash",
+    "description": "App crashes on launch after update"
+  },
+  {
+    "customer_id": "CUST-11",
+    "customer_email": "eleven@example.com",
+    "customer_name": "Eleven",
+    "subject": "Refund",
+    "description": "Requesting refund for last invoice"
+  },
+  {
+    "customer_id": "CUST-12",
+    "customer_email": "invalid-email",
+    "customer_name": "Bad",
+    "subject": "x",
+    "description": "short"
+  }
+]
