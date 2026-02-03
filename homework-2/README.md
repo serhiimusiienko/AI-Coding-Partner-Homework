@@ -46,7 +46,10 @@ Run tests and coverage:
 cd homework-2
 ./gradlew test jacocoTestReport
 ```
-Coverage report at `build/reports/jacoco/test/html/index.html`.
+Coverage reports:
+- HTML: [homework-2/build/reports/jacoco/test/html/index.html](homework-2/build/reports/jacoco/test/html/index.html)
+- XML: [homework-2/build/reports/jacoco/test/jacocoTestReport.xml](homework-2/build/reports/jacoco/test/jacocoTestReport.xml)
+- Summary: [homework-2/docs/screenshots/test_coverage.md](homework-2/docs/screenshots/test_coverage.md)
 
 ## Notes
 - Import expects CSV headers in snake_case.

@@ -33,5 +33,7 @@ cd homework-2
 | Concurrent list (20) | 20 | < 300ms p95 | TBD |
 
 ## Coverage
-- JaCoCo report: `build/reports/jacoco/test/html/index.html`
+- JaCoCo HTML: [homework-2/build/reports/jacoco/test/html/index.html](homework-2/build/reports/jacoco/test/html/index.html)
+- JaCoCo XML: [homework-2/build/reports/jacoco/test/jacocoTestReport.xml](homework-2/build/reports/jacoco/test/jacocoTestReport.xml)
+- Summary: [homework-2/docs/screenshots/test_coverage.md](homework-2/docs/screenshots/test_coverage.md)
 - Target: >85% overall coverage
