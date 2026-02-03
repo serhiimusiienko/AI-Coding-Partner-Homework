@@ -47,4 +47,21 @@ class TicketApiTests {
                         .content(upd))
                 .andExpect(status().isNotFound());
     }
+    
+        @Test
+        void autoClassifyOnCreateSetsUrgent() throws Exception {
+                String body = "{" +
+                                "\"customer_id\":\"CUST-2\"," +
+                                "\"customer_email\":\"user2@example.com\"," +
+                                "\"customer_name\":\"User Two\"," +
+                                "\"subject\":\"Production down\"," +
+                                "\"description\":\"App crash causes outage\"}";
+
+                mockMvc.perform(post("/tickets?autoClassify=true")
+                                                .contentType(MediaType.APPLICATION_JSON)
+                                                .content(body))
+                                .andExpect(status().isCreated())
+                                .andExpect(jsonPath("$.priority", is("URGENT")))
+                                .andExpect(jsonPath("$.category", anyOf(is("TECHNICAL_ISSUE"), is("BUG_REPORT"))));
+        }
 }

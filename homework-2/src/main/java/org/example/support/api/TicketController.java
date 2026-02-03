@@ -63,8 +63,16 @@ public class TicketController {
 
     @GetMapping
     public ResponseEntity<List<Ticket>> listTickets(@RequestParam(required = false) Category category,
-                                         @RequestParam(required = false) Priority priority) {
-        List<Ticket> result = service.list(category, priority);
+                                         @RequestParam(required = false) Priority priority,
+                                         @RequestParam(required = false) org.example.support.domain.Status status,
+                                         @RequestParam(required = false, name = "tag") String tag,
+                                         @RequestParam(required = false, name = "from") String fromStr,
+                                         @RequestParam(required = false, name = "to") String toStr) {
+        java.time.Instant from = null;
+        java.time.Instant to = null;
+        try { if (fromStr != null) from = java.time.Instant.parse(fromStr); } catch (Exception ignored) {}
+        try { if (toStr != null) to = java.time.Instant.parse(toStr); } catch (Exception ignored) {}
+        List<Ticket> result = service.list(category, priority, status, tag, from, to);
         return ResponseEntity.ok(result);
     }
 

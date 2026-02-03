@@ -29,8 +29,10 @@ public class TicketService {
         return repository.save(ticket);
     }
 
-    public List<Ticket> list(Category category, org.example.support.domain.Priority priority) {
-        return repository.findAll(category, priority);
+    public List<Ticket> list(Category category, org.example.support.domain.Priority priority,
+                             org.example.support.domain.Status status, String tag,
+                             java.time.Instant from, java.time.Instant to) {
+        return repository.findAll(category, priority, status, tag, from, to);
     }
 
     public Ticket get(UUID id) {

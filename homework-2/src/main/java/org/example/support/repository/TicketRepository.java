@@ -2,9 +2,11 @@ package org.example.support.repository;
 
 import org.example.support.domain.Category;
 import org.example.support.domain.Priority;
+import org.example.support.domain.Status;
 import org.example.support.domain.Ticket;
 import org.springframework.stereotype.Repository;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -29,11 +31,15 @@ public class TicketRepository {
         return store.remove(id) != null;
     }
 
-    public List<Ticket> findAll(Category category, Priority priority) {
+    public List<Ticket> findAll(Category category, Priority priority, Status status, String tag, Instant from, Instant to) {
         List<Ticket> all = new ArrayList<>(store.values());
         return all.stream()
                 .filter(t -> category == null || t.getCategory() == category)
                 .filter(t -> priority == null || t.getPriority() == priority)
+                .filter(t -> status == null || t.getStatus() == status)
+                .filter(t -> tag == null || (t.getTags() != null && t.getTags().contains(tag)))
+                .filter(t -> from == null || (t.getCreatedAt() != null && !t.getCreatedAt().isBefore(from)))
+                .filter(t -> to == null || (t.getCreatedAt() != null && !t.getCreatedAt().isAfter(to)))
                 .collect(Collectors.toList());
     }
 }
