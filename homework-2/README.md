@@ -49,7 +49,7 @@ cd homework-2
 Coverage reports:
 - HTML: [homework-2/build/reports/jacoco/test/html/index.html](homework-2/build/reports/jacoco/test/html/index.html)
 - XML: [homework-2/build/reports/jacoco/test/jacocoTestReport.xml](homework-2/build/reports/jacoco/test/jacocoTestReport.xml)
-- Summary: [homework-2/docs/screenshots/test_coverage.md](homework-2/docs/screenshots/test_coverage.md)
+ - Summary: [homework-2/docs/TEST_COVERAGE.md](homework-2/docs/TEST_COVERAGE.md)
 
 ## Notes
 - Import expects CSV headers in snake_case.
