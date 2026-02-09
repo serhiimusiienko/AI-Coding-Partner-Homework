@@ -1,6 +1,12 @@
 # Intelligent Customer Support System (Homework 2)
 
-## Overview
+> **Student Name**: Serhii Musiienko
+> **Date Submitted**: 03.02.2026
+> **AI Tools Used**: GitHub Copilot
+
+---
+
+## 📋 Project Overview
 A Spring Boot (Java 21) application for managing support tickets:
 - CRUD REST API with filtering
 - Bulk import from CSV/JSON/XML with validation and summary
