@@ -1,12 +1,12 @@
 # 🏦 Homework 1: Banking Transactions API (Java 21 + Spring Boot)
 
-> **Student Name**: [Your Name]
-> **Date Submitted**: [Date]
+> **Student Name**: Serhii Musiienko
+> **Date Submitted**: 26.01.2026
 > **AI Tools Used**: GitHub Copilot
 
 ---
 
-## 📋 Overview
+## 📋 Project Overview
 
 A minimal REST API for banking transactions implemented with Java 21, Gradle, and Spring Boot. Uses in-memory storage and includes validation, filtering, and an account summary endpoint.
 
