@@ -1,63 +1,38 @@
-# Intelligent Customer Support System (Homework 2)
+# 🎧 Homework 2: Intelligent Customer Support System
 
-> **Student Name**: Serhii Musiienko
-> **Date Submitted**: 03.02.2026
+> **Student Name**: Musiinko Serhii  
+> **Date Submitted**: 03.02.2026  
 > **AI Tools Used**: GitHub Copilot
 
----
+## What it does
+- CRUD for support tickets (`/tickets`)
+- Bulk import from CSV/JSON/XML (`/tickets/import`) with validation + summary
+- Auto-classification (`/tickets/{id}/auto-classify`) + optional `autoClassify=true` on create
+- Filtering by `category`, `priority`, `status`, `tag`, and created-at range (`from`/`to`)
 
-## 📋 Project Overview
-A Spring Boot (Java 21) application for managing support tickets:
-- CRUD REST API with filtering
-- Bulk import from CSV/JSON/XML with validation and summary
-- Auto-classification of tickets (category, priority, confidence, reasoning, keywords)
-- In-memory persistence for simplicity
-- Tests (JUnit Jupiter 5, Mockito, JaCoCo) and demo requests script
+## Tech notes
+- Java 21, Spring Boot
+- In-memory storage (`ConcurrentHashMap`) — data resets on restart
+- JSON uses `snake_case` (configured in `application.yml`)
 
-## Features
-- Endpoints: `/tickets` CRUD, `/tickets/import`, `/tickets/{id}/auto-classify`
-- Validation via Jakarta Bean Validation
-- JSON snake_case mapping
-- Rule-based classifier with decision log
-
-## Architecture (Mermaid)
 ```mermaid
 flowchart LR
-  C[Client] --> API[REST Controllers]
-  API --> Svc[TicketService]
-  Svc --> Repo[TicketRepository (in-memory)]
-  API --> Import[TicketImportService]
-  API --> Classifier[TicketClassifier]
-  Classifier --> Log[Decision Log]
+  Client --> TicketController
+  TicketController --> TicketService
+  TicketService --> TicketRepository[(In-memory store)]
+  TicketController --> TicketImportService
+  TicketController --> TicketClassifier
 ```
 
-## Setup & Run
-- Requires Java 21 and Gradle wrapper
+## Run
+See [homework-2/HOWTORUN.md](homework-2/HOWTORUN.md) (port `8080`).
 
-Commands:
-```bash
-cd homework-2
-./gradlew bootRun
-```
+## Tests
+- Run: `gradle test` (Gradle wrapper jar is missing in this repo)
+- Coverage report: `gradle test jacocoTestReport` (HTML: `build/reports/jacoco/test/html/index.html`)
 
-## Project Structure
-- `src/main/java/org/example/support` — application code
-- `src/test/java` — tests
-- `src/test/resources/fixtures` — sample import data
-- `demo/requests.sh` — cURL samples (multipart import supported)
-
-## Testing
-Run tests and coverage:
-```bash
-cd homework-2
-./gradlew test jacocoTestReport
-```
-Coverage reports:
-- HTML: [homework-2/build/reports/jacoco/test/html/index.html](homework-2/build/reports/jacoco/test/html/index.html)
-- XML: [homework-2/build/reports/jacoco/test/jacocoTestReport.xml](homework-2/build/reports/jacoco/test/jacocoTestReport.xml)
- - Summary: [homework-2/docs/TEST_COVERAGE.md](homework-2/docs/TEST_COVERAGE.md)
-
-## Notes
-- Import expects CSV headers in snake_case.
-- XML expects a list of tickets (root array).
-- Use `autoClassify=true` on create to classify immediately.
+## Docs
+- [homework-2/docs/API_REFERENCE.md](homework-2/docs/API_REFERENCE.md) — endpoints + examples
+- [homework-2/docs/ARCHITECTURE.md](homework-2/docs/ARCHITECTURE.md) — component overview
+- [homework-2/docs/TESTING_GUIDE.md](homework-2/docs/TESTING_GUIDE.md) — how to run tests + fixtures
+- [homework-2/docs/TEST_COVERAGE.md](homework-2/docs/TEST_COVERAGE.md) — current JaCoCo numbers

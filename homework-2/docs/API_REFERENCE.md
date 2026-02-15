@@ -1,100 +1,38 @@
+````markdown
 # API Reference
 
-Base URL: `http://localhost:8080`
+Base URL: `http://localhost:8080`  
+Content-Type: `application/json` (snake_case)
 
-## Tickets
-- Create: `POST /tickets?autoClassify=false`
-- List: `GET /tickets?category=TECHNICAL_ISSUE&priority=HIGH`
-- Get: `GET /tickets/{id}`
-- Update: `PUT /tickets/{id}`
-- Delete: `DELETE /tickets/{id}`
-- Auto-classify: `POST /tickets/{id}/auto-classify`
+## Endpoints
+- `POST /tickets?autoClassify={true|false}` -> `201 Ticket`
+- `POST /tickets/import` (multipart `file`, optional `format=csv|json|xml`) -> `200 ImportSummary`
+- `GET /tickets` (optional `category|priority|status|tag|from|to`) -> `200 Ticket[]`
+- `GET /tickets/{id}` -> `200 Ticket` / `404`
+- `PUT /tickets/{id}` (partial update) -> `200 Ticket` / `404`
+- `DELETE /tickets/{id}` -> `204` / `404`
+- `POST /tickets/{id}/auto-classify` -> `200 ClassificationResult` / `404`
 
-### Data Model (JSON snake_case)
-Example:
-```json
-{
-  "customer_id":"CUST-1",
-  "customer_email":"user@example.com",
-  "customer_name":"User",
-  "subject":"Login issue",
-  "description":"Cannot access account",
-  "category":"OTHER",
-  "priority":"MEDIUM",
-  "status":"NEW",
-  "tags":["auth"],
-  "metadata": {"source":"web_form","browser":"Chrome","device_type":"desktop"}
-}
-```
-
-### Create Ticket
+## Create ticket
 ```bash
-curl -sS -X POST "http://localhost:8080/tickets?autoClassify=true" \
+curl -s -X POST 'http://localhost:8080/tickets?autoClassify=true' \
   -H 'Content-Type: application/json' \
-  -d '{
-    "customer_id":"CUST-1",
-    "customer_email":"user@example.com",
-    "customer_name":"User",
-    "subject":"Login issue",
-    "description":"Cannot access account"
-  }'
+  -d '{"customer_id":"C1","customer_email":"u@example.com","customer_name":"User","subject":"Production down","description":"App crash in prod"}'
 ```
 
-### List Tickets
+## Import (format inferred by filename)
 ```bash
-curl -sS "http://localhost:8080/tickets?category=TECHNICAL_ISSUE&priority=URGENT"
+curl -s -X POST 'http://localhost:8080/tickets/import' \
+  -F 'file=@src/test/resources/fixtures/sample_tickets.csv'
 ```
 
-### Get Ticket
-```bash
-curl -sS "http://localhost:8080/tickets/{id}"
-```
+## Response shapes (abridged)
+- `Ticket`: has `id`, `created_at`, `updated_at`, `status` (default `NEW`), optional `tags`, `metadata`, `classification_confidence`
+- `ImportSummary`: `total_records`, `successful`, `failed`, `failures[] { index, error }`
+- `ClassificationResult`: `category`, `priority`, `confidence`, `reasoning`, `keywords[]`
 
-### Update Ticket (partial)
-```bash
-curl -sS -X PUT "http://localhost:8080/tickets/{id}" \
-  -H 'Content-Type: application/json' \
-  -d '{"subject":"Updated subject"}'
-```
+## Errors
+- `400` invalid payload / malformed import / unknown format (may be empty body)
+- `404` unknown ticket id
 
-### Delete Ticket
-```bash
-curl -sS -X DELETE "http://localhost:8080/tickets/{id}"
-```
-
-## Bulk Import
-Endpoint: `POST /tickets/import`
-
-- Multipart fields:
-  - `file`: uploaded file
-  - `format`: `csv` | `json` | `xml` (optional, auto-detected by extension)
-
-Response (summary):
-```json
-{
-  "totalRecords": 50,
-  "successful": 45,
-  "failed": 5,
-  "failures": [{"index":2, "error":"customer_email: must be a well-formed email address"}]
-}
-```
-
-Example:
-```bash
-curl -sS -X POST "http://localhost:8080/tickets/import" \
-  -F "file=@sample_tickets.json" -F "format=json"
-```
-
-## Classification
-Endpoint: `POST /tickets/{id}/auto-classify`
-
-Response:
-```json
-{
-  "category":"TECHNICAL_ISSUE",
-  "priority":"URGENT",
-  "confidence":0.95,
-  "reasoning":"Category determined by keyword match; priority by urgency terms.",
-  "keywords":["production down","crash"]
-}
-```
+````
