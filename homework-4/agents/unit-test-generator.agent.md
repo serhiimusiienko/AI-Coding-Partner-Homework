@@ -3,11 +3,11 @@ description: >
   Generates and runs unit tests for bug-fix changes following FIRST
   principles. Creates test files, executes them, and produces a test report.
 tools:
-  - editFiles
-  - codebase
+  - edit/editFiles
+  - search/codebase
   - search
-  - runInTerminal
-  - terminalLastCommand
+  - execute/runInTerminal
+  - read/terminalLastCommand
 ---
 
 # Unit Test Generator Agent

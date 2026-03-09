@@ -4,9 +4,9 @@ description: >
   and code snippet in a codebase-research report, then produces a
   verified-research summary with a quality rating.
 tools:
-  - codebase
+  - search/codebase
   - search
-  - fetch
+  - web/fetch
 handoffs:
   - label: Plan Bug Fix
     agent: bug-implementer

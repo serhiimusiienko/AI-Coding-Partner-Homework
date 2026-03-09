@@ -4,9 +4,9 @@ description: >
   vulnerabilities and produces a security report. Read-only — never
   modifies source code.
 tools:
-  - codebase
+  - search/codebase
   - search
-  - fetch
+  - web/fetch
 ---
 
 # Security Verifier Agent

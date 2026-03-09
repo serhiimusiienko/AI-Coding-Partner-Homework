@@ -3,11 +3,11 @@ description: >
   Executes a bug-fix implementation plan step-by-step, runs tests after each
   change, and produces a fix-summary report. Stops immediately on test failure.
 tools:
-  - editFiles
-  - codebase
+  - edit/editFiles
+  - search/codebase
   - search
-  - runInTerminal
-  - terminalLastCommand
+  - execute/runInTerminal
+  - read/terminalLastCommand
 handoffs:
   - label: Run Security Review
     agent: security-verifier
