@@ -1,6 +1,6 @@
 ---
-mode: 'agent'
 description: 'Validate sample transactions in dry-run mode and print a summary table.'
+agent: agent
 ---
 
 Validate all transactions in sample-transactions.json without processing them.

@@ -1,5 +1,5 @@
 ---
-description: 'Generate a technical specification for the banking pipeline from template'
+description: 'Generate a technical specification for the banking pipeline from template.'
 agent: agent
 ---
 

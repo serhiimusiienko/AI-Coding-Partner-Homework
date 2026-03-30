@@ -1,6 +1,6 @@
 ---
-mode: 'agent'
 description: 'Run the full multi-agent banking pipeline and summarize results.'
+agent: agent
 ---
 
 Run the multi-agent banking pipeline end-to-end.
