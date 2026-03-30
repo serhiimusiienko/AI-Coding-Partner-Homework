@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "./scripts/check-coverage.sh",
+        "cwd": "homework-6",
+        "timeout": 120
+      }
+    ]
+  }
+}
